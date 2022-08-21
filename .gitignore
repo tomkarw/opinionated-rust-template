@@ -1,0 +1,10 @@
+# IDEs
+/.idea
+/.vs
+/.vscode
+
+
+/target
+
+# leave in libraries, commit Cargo.lock in binaries
+/Cargo.lock

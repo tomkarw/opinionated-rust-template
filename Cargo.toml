@@ -1,0 +1,42 @@
+[package]
+name = "rust-template"
+version = "0.1.0"
+authors = ["Tom Karwowski <to.karwowski@gmail.com"]
+edition = "2021"
+rust-version = "1.56.0"
+description = ""
+documentation = ""
+homepage = ""
+repository = ""
+license = "MIT OR Apache-2.0"
+keywords = []
+categories = []
+
+publish = false # no accidents while in dev
+
+[features]
+default = []
+full = []
+
+[dependencies]
+envy = "0.4.2"
+
+[dev-dependencies]
+criterion = "0.3.6"
+pretty_assertions = "1.2.1"
+
+[package.metadata.playground]
+features = ["full"]
+
+[profile.release]
+codegen-units = 1
+incremental = false
+
+[profile.bench]
+codegen-units = 1
+incremental = false
+
+[[bench]]
+name = "benches"
+harness = false
+required-features = ["full"]
