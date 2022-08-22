@@ -1,0 +1,4 @@
+[values]
+gh-username = "tomkarw"
+project-description = "Opinionated Rust template for your next project"
+nightly = false

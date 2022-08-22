@@ -1,9 +1,1 @@
-# IDEs
 /.idea
-/.vs
-/.vscode
-
-/target
-{% if crate_type == "lib" %}
-/Cargo.lock
-{% endif %}
