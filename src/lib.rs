@@ -64,6 +64,11 @@
     clippy::unseparated_literal_suffix,
     clippy::verbose_file_reads
 )]
+
+{% if crate_type == "bin" %}mod env;
+
+pub use env::ENV;{% endif %}
+
 #[cfg(test)]
 mod tests {
     #[test]

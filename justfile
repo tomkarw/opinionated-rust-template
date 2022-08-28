@@ -13,6 +13,10 @@ fmt *FLAGS:
 test *FLAGS:
     cargo nextest run {{FLAGS}}
 
+{% if crate_type == "bin" %}watch *FLAGS:
+    echo # things required by `just watch`
+    cargo install cargo-watch{% endif %}
+
 pre-commit:
     @just fmt
     cargo spellcheck fix
@@ -46,6 +50,8 @@ init:
     rustup install nightly
     echo # things required by `just test`
     cargo install cargo-nextest
+    {% if crate_type == "bin" %}echo # things required by `just watch`
+    cargo install cargo-watch{% endif %}
     echo # things required by `just pre-commit`
     cargo install cargo-spellcheck --locked
     cargo spellcheck completions # shell auto-completions for cargo-spellcheck

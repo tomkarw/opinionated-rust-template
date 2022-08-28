@@ -1,7 +1,7 @@
 [package]
-name = "rust-template"
+name = "{{project-name}}"
 version = "0.1.0"
-authors = ["Tom Karwowski <to.karwowski@gmail.com"]
+authors = ["{{authors}}"]
 edition = "2021"
 rust-version = "1.56.0"
 description = ""
@@ -9,7 +9,7 @@ documentation = ""
 homepage = ""
 repository = ""
 license = "MIT OR Apache-2.0"
-keywords = []
+keywords = ["{{project-name}}"]
 categories = []
 
 publish = false # no accidents while in dev
@@ -19,11 +19,13 @@ default = []
 full = []
 
 [dependencies]
-envy = "0.4.2"
+{% if crate_type == "bin" %}serde = { version = "1", features = ["derive"] }
+envy = "0.4"
+once_cell = "1"{% endif %}
 
 [dev-dependencies]
-criterion = "0.3.6"
-pretty_assertions = "1.2.1"
+criterion = "0.3"
+pretty_assertions = "1"
 
 [package.metadata.playground]
 features = ["full"]

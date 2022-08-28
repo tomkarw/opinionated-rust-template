@@ -3,8 +3,7 @@
 /.vs
 /.vscode
 
-
 /target
-
-# leave in libraries, commit Cargo.lock in binaries
+{% if crate_type == "lib" %}
 /Cargo.lock
+{% endif %}
