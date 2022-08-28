@@ -41,19 +41,23 @@ Includes:
 - [cargo-geiger] - tool that lists statistics related to the usage of unsafe Rust code in a Rust crate and all its dependencies
 
 ## TODO
-- [ ] template project to provide `--bin` and `--lib` versions in `cargo-generate`
-- [ ] add all commands from `just thorough-check` to CI
+- [x] template project to provide `--bin` and `--lib` versions in `cargo-generate`
+- [ ] add choice of FOSS licences (MIT/APACHE/both/neither)
+- [ ] add comments to all of `just` commands
+- [ ] add confirmation for each of steps performed in `just thorough-check`
 - [ ] extend `pre-commit-rust` with all things in `just pre-commit`
+- [ ] add all commands from `just thorough-check` to CI
 - [ ] investigate `cargo-sync-readme`
 - [ ] investigate `rust-semverver`, `cargo-public-api`
+- [ ] meta: speed up build-template CI run
 
 ## Similar projects
 
 You can find similar templates via [cargo-generate topic on GitHub]
+
 ## License
 
-This project is licensed under either of
-
+This project is licensed under either of:
 * Apache License, Version 2.0, ([LICENSE-APACHE] or http://www.apache.org/licenses/LICENSE-2.0)
 * MIT license ([LICENSE-MIT] or http://opensource.org/licenses/MIT)
 

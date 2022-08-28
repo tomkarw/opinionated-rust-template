@@ -6,7 +6,7 @@ on:
   pull_request:
 
 jobs:
-  build:
+  quick-check:
     runs-on: ubuntu-latest
     env:
       PROJECT_NAME: opinionated-rust-template-example
@@ -19,17 +19,52 @@ jobs:
           name: ${{ env.PROJECT_NAME }}
           subfolder: template
           template_values_file: .github/workflows/template_values.toml
+          other: "--bin"
       - name: Install Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
           profile: minimal
           override: true
-      - name: Cargo check
-        # we need to move the generated project to a temp folder, away from the template project
-        # otherwise `cargo` runs would fail
-        # see https://github.com/rust-lang/cargo/issues/9922
+      - name: Quick check to see if repo compiles
         run: |
           mv $PROJECT_NAME ${{ runner.temp }}/
           cd ${{ runner.temp }}/$PROJECT_NAME
-          cargo check --tests
+          cargo check
+
+  thorough-check:
+    runs-on: ubuntu-latest
+    env:
+      PROJECT_NAME: opinionated-rust-template-example
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Run cargo generate
+        uses: cargo-generate/cargo-generate-action@v0.16.0
+        with:
+          name: ${{ env.PROJECT_NAME }}
+          subfolder: template
+          template_values_file: .github/workflows/template_values.toml
+          other: "--bin"
+      - name: Install Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          profile: default
+          override: true
+      - name: Test just commands and repo in general
+        run: |
+          mv $PROJECT_NAME ${{ runner.temp }}/
+          cd ${{ runner.temp }}/$PROJECT_NAME
+          # install just and cargo-binstall
+          cargo install cargo-binstall --quiet
+          cargo binstall just --no-confirm
+          # test most of just scripts
+          just list
+          just help
+          just init
+          just fmt --check
+          just test
+          just pre-commit
+          just coverage
+          just benchmark

@@ -1,7 +1,7 @@
 //! Project-level documentation.
 
-{% if nightly %}#![feature(lint_reasons)] // Checks for attributes that allow lints without a reason.{% endif %}
-#![allow(clippy::module_name_repetitions)]
+{% if nightly %}#![feature(lint_reasons)] // Checks for attributes that allow lints without a reason.
+{% endif %}#![allow(clippy::module_name_repetitions)]
 // clippy WARN level lints
 #![warn(
     missing_docs,

@@ -5,9 +5,34 @@
 [![CI](https://github.com/{{gh-username}}/{{project-name}}/workflows/CI/badge.svg)](https://github.com/{{gh-username}}/{{project-name}}/actions)
 [![Coverage Status](https://coveralls.io/repos/github/{{gh-username}}/{{project-name}}/badge.svg?branch=main)](https://coveralls.io/github/{{gh-username}}/{{project-name}}?branch=main)
 
-Only requires `just` to bootstrap all tools and configuration:
+# Development
+
+Only requires `just` to bootstrap all tools and configuration.
+However, using `cargo-binstall` is recommended and utilised heavily in `just init` command.
 ```bash
-cargo install just
+cargo install cargo-binstall
+cargo binstall just
+just init # setup repo, install hooks and all required tools
+```
+{% if crate_type == "bin" %}
+To run:
+```bash
+just run
+```
+{% endif %}
+To test:
+```bash
+just test
+```
+
+Before committing work:
+```bash
+just pre-commit
+```
+
+Too see all available commands:
+```bash
+just list
 ```
 
 ## TODO

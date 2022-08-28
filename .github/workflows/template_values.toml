@@ -1,4 +1,5 @@
 [values]
 gh-username = "tomkarw"
+protect-main-branch = true
 project-description = "Opinionated Rust template for your next project"
 nightly = false
