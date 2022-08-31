@@ -1,6 +1,0 @@
-[template]
-include = ["Cargo.toml", "justfile", "src/lib.rs"]
-ignore = [".github/workflows/build-template.yaml"]
-
-[conditional.'crate_type == "lib"']
-ignore = ["src/main.rs", "src/env.rs", ".env", "tests/e2e_tests.rs"]

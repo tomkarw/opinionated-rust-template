@@ -6,7 +6,12 @@ repos:
   hooks:
   - id: trailing-whitespace
   - id: end-of-file-fixer
+  - id: check-toml
+  - id: check-yaml
+  - id: pretty-format-json
   - id: check-added-large-files
+{% if protect-main-branch %}  - id: no-commit-to-branch
+    args: [--branch, main, --branch, staging]{% endif %}
 
 - repo: https://github.com/matthorgan/pre-commit-conventional-commits
   rev: master
@@ -14,3 +19,10 @@ repos:
   - id: conventional-commit-check
     stages:
     - commit-msg
+
+- repo: https://github.com/doublify/pre-commit-rust
+  rev: v1.0
+  hooks:
+  - id: fmt
+  - id: cargo-check
+  - id: clippy
