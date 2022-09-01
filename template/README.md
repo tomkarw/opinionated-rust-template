@@ -8,10 +8,8 @@
 # Development
 
 Only requires `just` to bootstrap all tools and configuration.
-However, using `cargo-binstall` is recommended and utilised heavily in `just init` command.
 ```bash
-cargo install cargo-binstall
-cargo binstall just
+cargo install just
 just init # setup repo, install hooks and all required tools
 ```
 {% if crate_type == "bin" %}
@@ -30,7 +28,7 @@ Before committing work:
 just pre-commit
 ```
 
-Too see all available commands:
+To see all available commands:
 ```bash
 just list
 ```

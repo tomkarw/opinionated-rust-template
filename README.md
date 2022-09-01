@@ -24,8 +24,8 @@ Includes:
 - MIT and Apache 2.0 licenses
 
 ## Description of included things
-- [just] - handy way to save and run project-specific commands
 - [Conventional Commit] - a specification for adding human and machine-readable meaning to commit messages
+- [just] - handy way to save and run project-specific commands
 - [pre-commit] - framework for managing and maintaining multi-language pre-commit hooks
 - [cargo-nextest] - next-generation test runner
 - [cargo-spellcheck] - check your spelling with `hunspell` and/or `nlprule`
@@ -34,6 +34,7 @@ Includes:
 - [cargo-udeps] - find unused dependencies in `Cargo.toml`
 - [cargo-audit] - audit `Cargo.lock` files for crates with security vulnerabilities reported to the [RustSec Advisory Database]
 - [cargo-upgrades] - shows which dependencies in `Cargo.toml` can be upgraded to a newer version
+- [cargo-unused-features]- allows you to find and prune enabled, but, potentially unused feature flags from your project
 
 ## Other recommended tools
 - [cargo-hack] - test each feature independently and all combinations of feature powerset
@@ -42,13 +43,13 @@ Includes:
 
 ## TODO
 - [x] template project to provide `--bin` and `--lib` versions in `cargo-generate`
+- [x] add all commands from `just thorough-check` to CI
 - [ ] add choice of FOSS licences (MIT/APACHE/both/neither)
 - [ ] add comments to all of `just` commands
 - [ ] add confirmation for each of steps performed in `just thorough-check`
 - [ ] extend `pre-commit-rust` with all things in `just pre-commit`
-- [ ] add all commands from `just thorough-check` to CI
 - [ ] investigate `cargo-sync-readme`
-- [ ] investigate `rust-semverver`, `cargo-public-api`
+- [ ] investigate `rust-semverver/cargo-public-api/cargo-semver-checks`
 - [ ] meta: speed up build-template CI run
 
 ## Similar projects
@@ -69,7 +70,7 @@ defined in the Apache-2.0 license, shall be dual licensed as above, without any 
 ## Authors
 
 Tomasz Karwowski
-[LinkedIn](https://www.linkedin.com/in/tomek-karwowski/)
+[LinkedIn]
 
 [//]: # (general links)
 [hyper project pipeline]: https://github.com/hyperium/hyper/blob/master/.github/workflows/CI.yml
@@ -83,8 +84,9 @@ Tomasz Karwowski
 [criterion]: https://github.com/bheisler/criterion.rs#quickstart
 [cargo-udeps]: https://github.com/est31/cargo-udeps
 [cargo-audit]: https://github.com/rustsec/rustsec/tree/HEAD/cargo-audit#readme
-[RustSec Advisory Database]: https://github.com/RustSec/advisory-db/
+[RustSec Advisory Database]: https://github.com/RustSec/advisory-db/#readme
 [cargo-upgrades]: https://gitlab.com/kornelski/cargo-upgrades/-/blob/main/README.md
+[cargo-unused-features]: https://github.com/timonpost/cargo-unused-features#readme
 
 [cargo-hack]: https://github.com/taiki-e/cargo-hack/#readme
 [cargo-modules]: https://github.com/regexident/cargo-modules#readme
@@ -94,3 +96,5 @@ Tomasz Karwowski
 
 [LICENSE-APACHE]: ./LICENSE-APACHE
 [LICENSE-MIT]: ./LICENSE-MIT
+
+[LinkedIn]: https://www.linkedin.com/in/tomek-karwowski/
