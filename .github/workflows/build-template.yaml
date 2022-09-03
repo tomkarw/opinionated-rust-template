@@ -6,7 +6,7 @@ on:
   pull_request:
 
 jobs:
-  quick-check:
+  quick-test:
     runs-on: ubuntu-latest
     env:
       PROJECT_NAME: opinionated-rust-template-example
@@ -26,13 +26,13 @@ jobs:
           toolchain: stable
           profile: minimal
           override: true
-      - name: Quick check to see if repo compiles
+      - name: Quick test to see if repo compiles
         run: |
           mv $PROJECT_NAME ${{ runner.temp }}/
           cd ${{ runner.temp }}/$PROJECT_NAME
           cargo check
 
-  thorough-check:
+  thorough-test:
     runs-on: ubuntu-latest
     env:
       PROJECT_NAME: opinionated-rust-template-example
@@ -59,7 +59,7 @@ jobs:
           # install just and cargo-binstall
           cargo install cargo-binstall --quiet
           cargo binstall just --no-confirm
-          # test most of just scripts
+          # test most of the just scripts
           just list
           just help
           just init
