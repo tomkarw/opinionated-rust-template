@@ -20,7 +20,7 @@ pre-commit:
     @just fmt
     cargo spellcheck fix
     cargo clippy
-    cargo clippy --tests
+    cargo clippy --tests --examples
     @just test
 
 coverage *FLAGS:
@@ -30,7 +30,7 @@ benchmark *FLAGS:
     cargo criterion {% raw %}{{FLAGS}}{% endraw %}
 
 thorough-check:
-    cargo +nightly udeps
+    cargo +nightly udeps --all-targets
     cargo audit
     cargo upgrades
     @just unused-features
@@ -49,7 +49,7 @@ init:
     echo # installing nightly used by `just fmt` and `cargo udeps`
     rustup install nightly
     echo # installing cargo-binstall for faster setup time
-    cargo install cargo-binstall
+    cargo binstall -V || cargo install cargo-binstall
     echo # things required by `just test`
     cargo binstall cargo-nextest --no-confirm
     {% if crate_type == "bin" %}echo # things required by `just watch`
