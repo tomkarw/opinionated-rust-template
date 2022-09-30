@@ -10,6 +10,9 @@ help:
 fmt *FLAGS:
     cargo +nightly fmt {% raw  %}{{FLAGS}}{% endraw %}
 
+check *FLAGS:
+    cargo clippy --tests --examples {% raw  %}{{FLAGS}}{% endraw %} -- -D warnings
+
 test *FLAGS:
     cargo nextest run {% raw  %}{{FLAGS}}{% endraw %}
 
@@ -18,10 +21,10 @@ test *FLAGS:
 {% endif %}
 pre-commit:
     @just fmt
-    cargo spellcheck fix
-    cargo clippy
-    cargo clippy --tests --examples
+    @just check
     @just test
+    cargo doc --no-deps --all-features
+    cargo spellcheck fix
 
 coverage *FLAGS:
     cargo llvm-cov {% raw %}{{FLAGS}}{% endraw %} --open
