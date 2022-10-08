@@ -1,9 +1,9 @@
 [template]
 cargo_generate_version = ">=0.10.0"
-include = ["README.md", "justfile", "Cargo.toml", "src/lib.rs", "src/main.rs", ".pre-commit-config.yaml"]
+include = ["*"]
 
 [conditional.'crate_type == "lib"']
-ignore = ["src/main.rs", "src/env.rs", ".env", "tests/e2e_tests.rs"]
+ignore = ["src/main.rs", "src/config.rs", ".env", "tests/e2e_tests.rs"]
 
 [placeholders.gh-username]
 type = "string"

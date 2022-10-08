@@ -1,6 +1,6 @@
-use {{crate_name}}::ENV;
+use {{crate_name}}::CONFIG;
 
 fn main() {
-    println!("Example bool: {}", ENV.example_bool);
-    println!("Example list: {:?}", ENV.example_list);
+    println!("Example bool: {}", CONFIG.example_bool);
+    println!("Example list: {:?}", CONFIG.example_list);
 }

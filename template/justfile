@@ -11,7 +11,7 @@ fmt *FLAGS:
     cargo +nightly fmt {% raw  %}{{FLAGS}}{% endraw %}
 
 check *FLAGS:
-    cargo clippy --tests --examples {% raw  %}{{FLAGS}}{% endraw %} -- -D warnings
+    cargo clippy --tests --examples {% raw  %}{{FLAGS}}{% endraw %}
 
 test *FLAGS:
     cargo nextest run {% raw  %}{{FLAGS}}{% endraw %}
@@ -21,7 +21,7 @@ test *FLAGS:
 {% endif %}
 pre-commit:
     @just fmt
-    @just check
+    @just check -- -D warnings
     @just test
     cargo doc --no-deps --all-features
     cargo spellcheck fix

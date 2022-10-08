@@ -64,9 +64,9 @@
     clippy::verbose_file_reads
 )]
 
-{% if crate_type == "bin" %}mod env;
+{% if crate_type == "bin" %}mod config;
 
-pub use env::ENV;{% endif %}
+pub use config::CONFIG;{% endif %}
 
 #[cfg(test)]
 mod tests {
