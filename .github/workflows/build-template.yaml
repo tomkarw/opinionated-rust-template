@@ -58,7 +58,7 @@ jobs:
           cd ${{ runner.temp }}/$PROJECT_NAME
           # install just and cargo-binstall
           cargo install cargo-binstall --quiet
-          cargo binstall just --no-confirm
+          cargo binstall just cargo-generate --no-confirm
           # test most of the just scripts
           just list
           just help
