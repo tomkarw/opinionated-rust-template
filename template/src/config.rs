@@ -21,3 +21,23 @@ pub struct Config {
 
 /// Access to parsed configuration.
 pub static CONFIG: Lazy<Config> = Lazy::new(|| envy::from_env().expect("some env vars missing"));
+
+#[cfg(test)]
+mod tests {
+    use pretty_assertions::assert_eq;
+
+    use super::Config;
+
+    #[test]
+    fn test_create_config() {
+        let config = Config {
+            example_bool: true,
+            example_list: vec!["one".to_owned(), "two".to_owned(), "three".to_owned()],
+        };
+        assert_eq!(config.example_bool, true);
+        assert_eq!(
+            config.example_list,
+            vec!["one".to_owned(), "two".to_owned(), "three".to_owned()]
+        );
+    }
+}

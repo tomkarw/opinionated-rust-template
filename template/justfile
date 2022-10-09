@@ -1,38 +1,50 @@
 #!/usr/bin/env just --justfile
 set dotenv-load := true
 
+# Output this list.
 list:
     @just --list
 
+# Output this list.
 help:
     @just list
 
+# Apply strict formatting.
 fmt *FLAGS:
     cargo +nightly fmt  --all {% raw  %}{{FLAGS}}{% endraw %}
 
+# Run clippy on codesbase, tests, examples, while testing all features.
 check *FLAGS:
     cargo clippy --tests --examples --all-targets --all-features --workspace {% raw  %}{{FLAGS}}{% endraw %}
 
+# Run tests.
 test *FLAGS:
     cargo nextest run --all-features --workspace {% raw  %}{{FLAGS}}{% endraw %}
 
-{% if crate_type == "bin" %}run *FLAGS:
+{% if crate_type == "bin" %}# Build and run.
+run *FLAGS:
     cargo run {% raw  %}{{FLAGS}}{% endraw %}{% endif %}
 
+# Generate documentation. Add '-- open' to open the docs in a web page.
 doc *FLAGS:
     cargo doc --no-deps --all-features  --document-private-items --workspace --examples {{FLAGS}}
 
+# Calculate coverage and open page with the results.
 coverage *FLAGS:
-    cargo llvm-cov {% raw %}{{FLAGS}}{% endraw %} --open
+    cargo llvm-cov {% raw %}{{FLAGS}}{% endraw %}
 
+# Benchmark codebase with criterion.
 benchmark *FLAGS:
     cargo criterion {% raw %}{{FLAGS}}{% endraw %}
 
+# Check for unused dependencies, audit for vulnerabilities,
+# and check if newer version of depenedencies is available.
 thorough-check:
     cargo +nightly udeps --all-targets
     cargo audit
     cargo upgrades
 
+# Check for unusead features. Opens results in a browser.
 unused-features:
     unused-features analyze
     unused-features build-report --input report.json
@@ -40,6 +52,8 @@ unused-features:
     mv report.html /tmp
     xdg-open /tmp/report.html
 
+# Runs all checks necessary before commit.
+# Checks formating, code quality, tests, documentation, spellcheck and more.
 pre-commit:
     @just fmt
     @just check -- -D warnings
@@ -50,6 +64,8 @@ pre-commit:
     cargo spellcheck fix
     cargo spellcheck reflow
 
+# Similar to `pre-commit` command, but is not interactive and doesn't modify the codebase.
+# Suitable for automated CI pipelines.
 ci:
     @just fmt --check
     @just check -- -D warnings
@@ -58,6 +74,7 @@ ci:
     @just thorough-check
     cargo spellcheck check
 
+# Initializes the project, installing all tools necessary. Should be run once before begining of development.
 init:
     echo # installing git hooks
     pre-commit --version || pip install pre-commit

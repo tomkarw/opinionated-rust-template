@@ -44,8 +44,8 @@ Includes:
 ## TODO
 - [x] template project to provide `--bin` and `--lib` versions in `cargo-generate`
 - [x] add all commands from `just thorough-check` to CI
-- [ ] add choice of FOSS licences (MIT/APACHE/both/neither)
-- [ ] add comments to all of `just` commands
+- [x] add choice of FOSS licences (MIT/APACHE/both/neither)
+- [x] add comments to all of `just` commands
 - [ ] add confirmation for each of steps performed in `just thorough-check`
 - [ ] extend `pre-commit-rust` with all things in `just pre-commit`
 - [ ] investigate `cargo-sync-readme`
