@@ -5,10 +5,22 @@ include = ["*"]
 [conditional.'crate_type == "lib"']
 ignore = ["src/main.rs", "src/config.rs", ".env", "tests/e2e_tests.rs"]
 
+[conditional.'license != "mit" && license != "both"']
+ignore = ["LICENSE-MIT"]
+
+[conditional.'license != "apache" && license != "both"']
+ignore = ["LICENSE-APACHE"]
+
 [placeholders.gh-username]
 type = "string"
 prompt = "GitHub username (or organization)?"
 regex = "^[A-Za-z0-9][A-Za-z0-9-]{0,37}[A-Za-z0-9]$"
+
+[placeholders.license]
+type = "string"
+prompt = "Which (if any) FOSS license to use?"
+choices = ["mit", "apache", "both", "none"]
+default = "both"
 
 [placeholders.protect-main-branch]
 type = "bool"

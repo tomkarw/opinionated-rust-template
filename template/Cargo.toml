@@ -5,12 +5,15 @@ authors = ["{{authors}}"]
 edition = "2021"
 rust-version = "1.56.0"
 description = ""
-documentation = ""
-homepage = ""
-repository = ""
-license = "MIT OR Apache-2.0"
+# documentation = ""
+# homepage = ""
+repository = ""{% if license == "mit" %}
+license = "MIT"{% endif %}{% if license == "apache" %}
+license = "Apache-2.0"{% endif %}{% if license == "both" %}
+license = "MIT OR Apache-2.0"{% endif %}{% if license == "none" %}
+license = ""{% endif %}
 keywords = ["{{project-name}}"]
-categories = []
+# categories = []
 
 publish = false # no accidents while in dev
 
