@@ -52,6 +52,12 @@ unused-features:
     mv report.html /tmp
     xdg-open /tmp/report.html
 
+# Check build timings.
+build-timings:
+    cargo clean
+    cargo build --release --quiet --timings
+    xdg-open /target/cargo-timings/cargo-timing.html
+
 # Runs all checks necessary before commit.
 # Checks formating, code quality, tests, documentation, spellcheck and more.
 pre-commit:
