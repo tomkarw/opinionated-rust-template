@@ -8,23 +8,19 @@ help:
     @just list
 
 fmt *FLAGS:
-    cargo +nightly fmt {% raw  %}{{FLAGS}}{% endraw %}
+    cargo +nightly fmt  --all {% raw  %}{{FLAGS}}{% endraw %}
 
 check *FLAGS:
-    cargo clippy --tests --examples {% raw  %}{{FLAGS}}{% endraw %}
+    cargo clippy --tests --examples --all-targets --all-features --workspace {% raw  %}{{FLAGS}}{% endraw %}
 
 test *FLAGS:
-    cargo nextest run {% raw  %}{{FLAGS}}{% endraw %}
+    cargo nextest run --all-features --workspace {% raw  %}{{FLAGS}}{% endraw %}
 
 {% if crate_type == "bin" %}run *FLAGS:
-    cargo run {% raw  %}{{FLAGS}}{% endraw %}
-{% endif %}
-pre-commit:
-    @just fmt
-    @just check -- -D warnings
-    @just test
-    cargo doc --no-deps --all-features
-    cargo spellcheck fix
+    cargo run {% raw  %}{{FLAGS}}{% endraw %}{% endif %}
+
+doc *FLAGS:
+    cargo doc --no-deps --all-features  --document-private-items --workspace --examples {{FLAGS}}
 
 coverage *FLAGS:
     cargo llvm-cov {% raw %}{{FLAGS}}{% endraw %} --open
@@ -36,7 +32,6 @@ thorough-check:
     cargo +nightly udeps --all-targets
     cargo audit
     cargo upgrades
-    @just unused-features
 
 unused-features:
     unused-features analyze
@@ -44,6 +39,24 @@ unused-features:
     rm report.json
     mv report.html /tmp
     xdg-open /tmp/report.html
+
+pre-commit:
+    @just fmt
+    @just check -- -D warnings
+    @just test
+    @just doc
+    @just thorough-check
+    @just unused-features
+    cargo spellcheck fix
+    cargo spellcheck reflow
+
+ci:
+    @just fmt --check
+    @just check -- -D warnings
+    @just test
+    @just doc
+    @just thorough-check
+    cargo spellcheck check
 
 init:
     echo # installing git hooks

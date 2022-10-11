@@ -63,11 +63,11 @@
     clippy::unseparated_literal_suffix,
     clippy::verbose_file_reads
 )]
+{% if crate_type == "bin" %}
+mod config;
 
-{% if crate_type == "bin" %}mod config;
-
-pub use config::CONFIG;{% endif %}
-
+pub use config::CONFIG;
+{% endif %}
 #[cfg(test)]
 mod tests {
     #[test]

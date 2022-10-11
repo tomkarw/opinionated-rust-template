@@ -11,11 +11,11 @@ use serde::Deserialize;
 pub struct Config {
     /// `EXAMPLE_BOOL`
     ///
-    /// An example of simple value sourced from env vars.
+    /// An example of simple value sourced from environment variables.
     pub example_bool: bool,
     /// `EXAMPLE_LISt`
     ///
-    /// An example of advanced value sourced from env vars.
+    /// An example of advanced value sourced from environment variables.
     pub example_list: Vec<String>,
 }
 

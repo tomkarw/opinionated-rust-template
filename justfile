@@ -17,12 +17,19 @@ generate-opinonated-binary:
     cargo generate --path . --bin --name {{binary-name}} -d project-description="Example binary project using opinionated-rust-template" -d nightly=true -d protect-main-branch=true -d gh-username=tomkarw
 
 generate:
-    rm -rf {{library-name}}
-    rm -rf {{binary-name}}
     @just generate-opinonated-library
     @just generate-opinonated-binary
 
 pre-commit:
     @just generate
-    cd {{library-name}} && just check -- -D warnings
-    cd {{binary-name}} && just check -- -D warnings
+    cd {{library-name}} && just ci
+    cd {{binary-name}} && just ci
+    rm -rf {{library-name}}
+    rm -rf {{binary-name}}
+
+ci:
+    @just generate
+    cd {{library-name}} && just init && just ci
+    cd {{binary-name}} && just init && just ci
+    rm -rf {{library-name}}
+    rm -rf {{binary-name}}
