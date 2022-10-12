@@ -4,6 +4,7 @@ on:
     branches:
       - main
   pull_request:
+  workflow_dispatch:
 
 jobs:
   quick-test:
@@ -58,13 +59,7 @@ jobs:
           cd ${{ runner.temp }}/$PROJECT_NAME
           # install just and cargo-binstall
           cargo install cargo-binstall --quiet
-          cargo binstall just --no-confirm
+          cargo binstall just cargo-generate --no-confirm
           # test most of the just scripts
-          just list
-          just help
           just init
-          just fmt --check
-          just test
-          just pre-commit
-          just coverage
-          just benchmark
+          just ci

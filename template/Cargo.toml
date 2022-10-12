@@ -5,12 +5,15 @@ authors = ["{{authors}}"]
 edition = "2021"
 rust-version = "1.56.0"
 description = ""
-documentation = ""
-homepage = ""
-repository = ""
-license = "MIT OR Apache-2.0"
+# documentation = ""
+# homepage = ""
+repository = ""{% if license == "mit" %}
+license = "MIT"{% endif %}{% if license == "apache" %}
+license = "Apache-2.0"{% endif %}{% if license == "both" %}
+license = "MIT OR Apache-2.0"{% endif %}{% if license == "none" %}
+license = ""{% endif %}
 keywords = ["{{project-name}}"]
-categories = []
+# categories = []
 
 publish = false # no accidents while in dev
 
@@ -19,13 +22,16 @@ default = []
 full = []
 
 [dependencies]
-{% if crate_type == "bin" %}serde = { version = "1", default-features = false, features = ["derive"] }
+{% if crate_type == "bin" %}serde = { version = "1", default-features = false, features = ["serde_derive"] }
 envy = "0.4"
 once_cell = "1"{% endif %}
 
 [dev-dependencies]
-criterion = "0.3"
+criterion = "0.4"
 pretty_assertions = "1"
+
+[package.metadata.cargo-udeps.ignore]
+development = ["criterion", "pretty_assertions"]
 
 [package.metadata.playground]
 features = ["full"]

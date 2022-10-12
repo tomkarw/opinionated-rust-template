@@ -26,6 +26,7 @@ Includes:
 ## Description of included things
 - [Conventional Commit] - a specification for adding human and machine-readable meaning to commit messages
 - [just] - handy way to save and run project-specific commands
+- [cargo-binstall] - binary installation for Rust projects
 - [pre-commit] - framework for managing and maintaining multi-language pre-commit hooks
 - [cargo-nextest] - next-generation test runner
 - [cargo-spellcheck] - check your spelling with `hunspell` and/or `nlprule`
@@ -37,6 +38,8 @@ Includes:
 - [cargo-unused-features]- allows you to find and prune enabled, but, potentially unused feature flags from your project
 
 ## Other recommended tools
+- [kondo] - save space by cleaning non-essential files from software projects. Finds and deletes `target` and `node_modules` folders
+- [difftastic] - a structural diff that understands syntax
 - [cargo-hack] - test each feature independently and all combinations of feature powerset
 - [cargo-modules] - plugin for showing an overview of a crate's modules
 - [cargo-geiger] - tool that lists statistics related to the usage of unsafe Rust code in a Rust crate and all its dependencies
@@ -44,8 +47,8 @@ Includes:
 ## TODO
 - [x] template project to provide `--bin` and `--lib` versions in `cargo-generate`
 - [x] add all commands from `just thorough-check` to CI
-- [ ] add choice of FOSS licences (MIT/APACHE/both/neither)
-- [ ] add comments to all of `just` commands
+- [x] add choice of FOSS licences (MIT/APACHE/both/neither)
+- [x] add comments to all of `just` commands
 - [ ] add confirmation for each of steps performed in `just thorough-check`
 - [ ] extend `pre-commit-rust` with all things in `just pre-commit`
 - [ ] investigate `cargo-sync-readme`
@@ -76,6 +79,7 @@ Tomasz Karwowski
 [hyper project pipeline]: https://github.com/hyperium/hyper/blob/master/.github/workflows/CI.yml
 
 [just]: https://github.com/casey/just#readme
+[cargo-binstall]: https://github.com/cargo-bins/cargo-binstall
 [Conventional Commit]: https://www.conventionalcommits.org/en/v1.0.0/
 [pre-commit]: https://pre-commit.com/
 [cargo-nextest]: https://github.com/nextest-rs/nextest#readme
@@ -88,6 +92,8 @@ Tomasz Karwowski
 [cargo-upgrades]: https://gitlab.com/kornelski/cargo-upgrades/-/blob/main/README.md
 [cargo-unused-features]: https://github.com/timonpost/cargo-unused-features#readme
 
+[kondo]: https://github.com/tbillington/kondo
+[difftastic]: https://github.com/Wilfred/difftastic
 [cargo-hack]: https://github.com/taiki-e/cargo-hack/#readme
 [cargo-modules]: https://github.com/regexident/cargo-modules#readme
 [cargo-geiger]: https://github.com/rust-secure-code/cargo-geiger/tree/HEAD/cargo-geiger#readme
